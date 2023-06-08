@@ -15,13 +15,13 @@ function divide(a, b){
   return a / b;
 }
 
-
 //user interface logic
 function handleUserSubmit(event){
   event.preventDefault();
-  const firstNumber = document.getElementById('user-input').value;
-  const secondNumber = document.getElementById('user-input2').value;
-  const operator = document.getElementById('operator').value;
+
+  const firstNumber = parseInt(document.getElementById('user-input1').value);
+  const secondNumber = parseInt(document.getElementById('user-input2').value);
+  const operator = document.getElementById('user-input.checked: true').value;
 
 
   let result=0;
@@ -45,15 +45,27 @@ function handleUserSubmit(event){
   const resultElement = document.getElementById('result');
   resultElement.removeAttribute('hidden');
   resultElement.innerText = result;
+
+
+}
+
+
+function reset(event){
+  event.preventDefault();
+  const resultElement = document.getElementById('result');
+  resultElement.setAttribute('hidden', true);
+  document.getElementById('user-input1').value = '';
+  document.getElementById('user-input2').value = '';
+
+
 }
 
 
 
-
-window.addEventListenter('load', function(event){
-  
+window.addEventListener('load', function(event){
+  event.preventDefault();
   const calcForm = document.getElementById('user-input');
-
+  const resetButton = document.getElementById('reset');
   calcForm.addEventListener('submit', handleUserSubmit);
-  
+  resetButton.addEventListener('click', reset);
 });
